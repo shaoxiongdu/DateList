@@ -6,6 +6,10 @@
  * author:dushaoxiong@lixiang.com
  */
 
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.utils;
 
 import android.text.TextUtils;
@@ -34,7 +38,7 @@ public class DateListNetworkUtil {
     public DateListNetworkUtil() {
         ip = DateListConstant.SERVER_IP;
         port = DateListConstant.SERVER_PORT;
-        url = DateListConstant.SERVER_URL;
+        url = DateListConstant.SERVER_URL_RANDOM_DATE;
     }
 
     public static DateListNetworkUtil getInstance() {

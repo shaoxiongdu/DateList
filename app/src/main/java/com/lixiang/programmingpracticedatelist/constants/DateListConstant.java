@@ -6,6 +6,10 @@
  * author:dushaoxiong@lixiang.com
  */
 
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.constants;
 
 public class DateListConstant {
@@ -20,7 +24,9 @@ public class DateListConstant {
 
     public static final int SERVER_PORT = 8888;
 
-    public static final String SERVER_URL = "openapi/lixiangdemo/timedatalist/";
+    public static final String SERVER_URL_FIXED_DATE = "openapi/lixiangdemo/timedatalist/";
+
+    public static final String SERVER_URL_RANDOM_DATE = "openapi/lixiangdemo/random/timedatalist/";
 
     public static final int TYPE_DATA_FOR_CACHE = 0x2;
 
