@@ -1,8 +1,13 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.provider;
 
-import android.os.Message;
-
-import com.lixiang.programmingpracticedatelist.constants.DateListConstant;
 import com.lixiang.programmingpracticedatelist.model.DateModel;
 
 import java.util.ArrayList;
@@ -18,7 +23,7 @@ public class DateProvider {
 
     private DateProvider() {
         mDateModelList = new ArrayList<>();
-        mDateModelList.add(new DateModel("当前暂无数据",0,0));
+        mDateModelList.add(new DateModel("当前暂无数据", 0, 0));
     }
 
     public static DateProvider getInstance() {
@@ -26,7 +31,7 @@ public class DateProvider {
             reentrantLock.lock();
             try {
                 mInstance = new DateProvider();
-            }finally {
+            } finally {
                 reentrantLock.unlock();
             }
         }
@@ -41,7 +46,7 @@ public class DateProvider {
         return mDateModelList.get(position);
     }
 
-    public void setDateModelList(List<DateModel> list){
+    public void setDateModelList(List<DateModel> list) {
         mDateModelList.clear();
         TreeSet<DateModel> treeSet = new TreeSet<>(list);
         mDateModelList.addAll(treeSet);

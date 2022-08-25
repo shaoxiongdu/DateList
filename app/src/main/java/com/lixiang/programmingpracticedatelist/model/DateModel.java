@@ -1,14 +1,16 @@
-package com.lixiang.programmingpracticedatelist.model;
+/*
+ * author:dushaoxiong@lixiang.com
+ */
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.TextUtils;
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+package com.lixiang.programmingpracticedatelist.model;
 
 import androidx.annotation.NonNull;
 
-import java.io.Serializable;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * 时间实体模型
@@ -49,7 +51,7 @@ public class DateModel implements Comparable<DateModel> {
     }
 
     /**
-     *  按时排序 如果时相同 则按分排序
+     * 按时排序 如果时相同 则按分排序
      *
      * @param dateModel 其他对象
      * @return 结果
@@ -61,6 +63,6 @@ public class DateModel implements Comparable<DateModel> {
         }
 
         return !Objects.equals(this.hour, dateModel.hour) ?
-                Integer.compare(this.hour,dateModel.getHour()) : Integer.compare(this.min, dateModel.min);
+                Integer.compare(this.hour, dateModel.getHour()) : Integer.compare(this.min, dateModel.min);
     }
 }

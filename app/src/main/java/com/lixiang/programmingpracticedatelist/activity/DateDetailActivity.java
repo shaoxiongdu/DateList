@@ -1,13 +1,18 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TimeUtils;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.BaseInterpolator;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
@@ -17,8 +22,6 @@ import com.lixiang.programmingpracticedatelist.R;
 import com.lixiang.programmingpracticedatelist.constants.DateListConstant;
 import com.lixiang.programmingpracticedatelist.model.DateModel;
 import com.lixiang.programmingpracticedatelist.provider.DateProvider;
-
-import java.util.concurrent.TimeUnit;
 
 public class DateDetailActivity extends AppCompatActivity {
 
@@ -31,7 +34,7 @@ public class DateDetailActivity extends AppCompatActivity {
     private static final BaseInterpolator easeOutQuartInterpolator = new BaseInterpolator() {
         @Override
         public float getInterpolation(float v) {
-            return 1 - (float)Math.pow(1 - v, 4);
+            return 1 - (float) Math.pow(1 - v, 4);
         }
     };
 
@@ -54,7 +57,7 @@ public class DateDetailActivity extends AppCompatActivity {
         // 时针目标度数
         float hourTargetAngle = mDateModel.getHour() % 12 * 360.f / 12;
         // 加上分针百分比的偏移量
-        hourTargetAngle +=  360.f / 12  * mDateModel.getMin() * 1.0f / 60;
+        hourTargetAngle += 360.f / 12 * mDateModel.getMin() * 1.0f / 60;
         // 启动时针动画
         startAnim(PIN_TYPE_HOUR, hourTargetAngle);
 

@@ -1,3 +1,11 @@
+<!--
+  ~ author:dushaoxiong@lixiang.com
+  -->
+
+<!--
+  ~ author:dushaoxiong@lixiang.com
+  -->
+
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.ProgrammingPracticeDateList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">

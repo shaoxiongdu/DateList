@@ -1,8 +1,16 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

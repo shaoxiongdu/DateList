@@ -1,9 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ author:dushaoxiong@lixiang.com
+  -->
+
+<!--
+  ~ author:dushaoxiong@lixiang.com
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lixiang.programmingpracticedatelist">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,16 +18,16 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/net_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProgrammingPracticeDateList"
-        android:networkSecurityConfig="@xml/net_config"
         tools:targetApi="31">
         <activity
             android:name="com.lixiang.programmingpracticedatelist.activity.DateDetailActivity"
+            android:exported="false"
             android:label="@string/detail_title"
-            android:parentActivityName="com.lixiang.programmingpracticedatelist.activity.DateListActivity"
-            android:exported="false" />
+            android:parentActivityName="com.lixiang.programmingpracticedatelist.activity.DateListActivity" />
         <activity
             android:name="com.lixiang.programmingpracticedatelist.activity.DateListActivity"
             android:exported="true">
@@ -31,9 +38,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.DateListService"
-            android:exported="false">
-        </service>
+        <service
+            android:name=".service.DateListService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

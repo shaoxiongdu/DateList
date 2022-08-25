@@ -1,3 +1,11 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 pluginManagement {
     repositories {
         gradlePluginPortal()

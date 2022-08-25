@@ -1,3 +1,11 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.utils;
 
 import androidx.annotation.NonNull;
@@ -45,7 +53,7 @@ public class OkHttpUtil {
             reentrantLock.lock();
             try {
                 mInstance = new OkHttpUtil();
-            }finally {
+            } finally {
                 reentrantLock.unlock();
             }
         }
@@ -102,7 +110,7 @@ public class OkHttpUtil {
     /**
      * GET 请求，异步方式，获取网络数据
      *
-     * @param url       请求地址
+     * @param url         请求地址
      * @param netCallback 回调函数
      */
     public void getDataAsync(String url, final NetCallback netCallback) {
@@ -128,9 +136,9 @@ public class OkHttpUtil {
     /**
      * POST 请求，异步方式，提交数据
      *
-     * @param url        请求地址
-     * @param bodyParams 请求参数
-     * @param netCallback  回调函数
+     * @param url         请求地址
+     * @param bodyParams  请求参数
+     * @param netCallback 回调函数
      */
     public void postDataAsync(String url, Map<String, String> bodyParams, final NetCallback netCallback) {
         // 构造 RequestBody
@@ -164,8 +172,8 @@ public class OkHttpUtil {
     /**
      * 异步 POST 请求，使用 JSON 格式作为参数
      *
-     * @param url       请求地址
-     * @param json      JSON 格式参数
+     * @param url         请求地址
+     * @param json        JSON 格式参数
      * @param netCallback 回调函数
      * @throws IOException 异常
      */
@@ -199,9 +207,9 @@ public class OkHttpUtil {
     /**
      * 构造 Request 发起异步请求
      *
-     * @param url       请求地址
+     * @param url         请求地址
      * @param netCallback 回调函数
-     * @param body      {@link RequestBody}
+     * @param body        {@link RequestBody}
      */
     private void buildRequest(String url, NetCallback netCallback, RequestBody body) {
         Request.Builder requestBuilder = new Request.Builder();

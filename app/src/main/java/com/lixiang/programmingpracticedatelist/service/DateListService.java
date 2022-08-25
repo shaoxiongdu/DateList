@@ -1,3 +1,11 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.service;
 
 import android.app.Service;
@@ -7,7 +15,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -30,12 +37,6 @@ public class DateListService extends Service {
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "onBind() called with: intent = [" + intent + "]");
         return new InnerBinder();
-    }
-
-    public class InnerBinder extends Binder {
-        public void setUiHandler(Handler uiHandler) {
-            mUiHandler = uiHandler;
-        }
     }
 
     @Override
@@ -96,6 +97,12 @@ public class DateListService extends Service {
             msg.what = DateListConstant.MSG_WHAT_DATE_CHANGE;
             msg.arg1 = type;
             mUiHandler.sendMessage(msg);
+        }
+    }
+
+    public class InnerBinder extends Binder {
+        public void setUiHandler(Handler uiHandler) {
+            mUiHandler = uiHandler;
         }
     }
 

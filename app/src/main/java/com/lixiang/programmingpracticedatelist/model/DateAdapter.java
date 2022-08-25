@@ -1,19 +1,24 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.model;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lixiang.programmingpracticedatelist.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
@@ -46,7 +51,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
         holder.dateHour.setText(dateModel.getHour().toString());
         holder.dateMin.setText(dateModel.getMin().toString());
 
-        holder.itemView.setOnClickListener((view)->{
+        holder.itemView.setOnClickListener((view) -> {
             if (null != mOnDateItemClickListener) {
                 mOnDateItemClickListener.onDateItemClick(position);
             }
@@ -59,7 +64,6 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
     }
 
     /**
-     *
      * @param listener
      */
     public void setOnDateItemClickListener(OnDateItemClickListener listener) {
@@ -70,7 +74,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
         mOnDateItemClickListener = null;
     }
 
-    public interface OnDateItemClickListener{
+    public interface OnDateItemClickListener {
         void onDateItemClick(int position);
     }
 

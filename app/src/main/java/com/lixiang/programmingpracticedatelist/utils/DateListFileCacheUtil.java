@@ -1,3 +1,11 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.utils;
 
 import android.content.Context;
@@ -16,9 +24,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class DateListFileCacheUtil {
 
-    private static DateListFileCacheUtil mInstance;
     private static final ReentrantLock reentrantLock = new ReentrantLock();
+    private static DateListFileCacheUtil mInstance;
     SharedPreferences mSharedPreferences;
+
+    private DateListFileCacheUtil(Context context) {
+        mSharedPreferences = context.getSharedPreferences(DateListConstant.CACHE_FILE_NAME, Context.MODE_PRIVATE);
+    }
 
     /**
      * @return {@link DateListFileCacheUtil}
@@ -28,15 +40,11 @@ public class DateListFileCacheUtil {
             reentrantLock.lock();
             try {
                 mInstance = new DateListFileCacheUtil(context);
-            }finally {
+            } finally {
                 reentrantLock.unlock();
             }
         }
         return mInstance;
-    }
-
-    private DateListFileCacheUtil(Context context) {
-        mSharedPreferences = context.getSharedPreferences(DateListConstant.CACHE_FILE_NAME, Context.MODE_PRIVATE);
     }
 
     public void write(List<DateModel> dateModels) {
@@ -45,7 +53,7 @@ public class DateListFileCacheUtil {
         }
         SharedPreferences.Editor edit = mSharedPreferences.edit();
         String json = new Gson().toJson(dateModels);
-        edit.putString(DateListConstant.CACHE_FILE_NAME,json);
+        edit.putString(DateListConstant.CACHE_FILE_NAME, json);
         edit.apply();
     }
 
@@ -55,7 +63,8 @@ public class DateListFileCacheUtil {
             return new ArrayList<>();
         }
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<DateModel>>(){}.getType();
+        Type type = new TypeToken<ArrayList<DateModel>>() {
+        }.getType();
         return gson.fromJson(json, type);
     }
 

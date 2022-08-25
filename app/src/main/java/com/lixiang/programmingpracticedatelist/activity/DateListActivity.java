@@ -1,3 +1,11 @@
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
+/*
+ * author:dushaoxiong@lixiang.com
+ */
+
 package com.lixiang.programmingpracticedatelist.activity;
 
 import android.content.ComponentName;
@@ -8,7 +16,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
-
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -21,11 +28,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lixiang.programmingpracticedatelist.R;
 import com.lixiang.programmingpracticedatelist.constants.DateListConstant;
+import com.lixiang.programmingpracticedatelist.model.DateAdapter;
 import com.lixiang.programmingpracticedatelist.model.DateModel;
 import com.lixiang.programmingpracticedatelist.provider.DateProvider;
-import com.lixiang.programmingpracticedatelist.model.DateAdapter;
 import com.lixiang.programmingpracticedatelist.service.DateListService;
-import com.lixiang.programmingpracticedatelist.utils.DateListNetworkUtil;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -89,38 +95,12 @@ public class DateListActivity extends AppCompatActivity {
         bindService(serviceIntent, dateServiceConnection, BIND_AUTO_CREATE);
     }
 
-    public class DateServiceConnection implements ServiceConnection {
-
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Log.d(TAG, "onServiceConnected() called with: componentName = [" + componentName + "], iBinder = [" + iBinder + "]");
-            mServiceInnerBinder = (DateListService.InnerBinder) iBinder;
-            mServiceInnerBinder.setUiHandler(mUiHandler);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            Log.d(TAG, "onServiceDisconnected() called with: componentName = [" + componentName + "]");
-            mServiceInnerBinder.setUiHandler(null);
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mDateAdapter.removeOnDateItemClickListener();
         unbindService(dateServiceConnection);
         dateServiceConnection = null;
-    }
-
-    private class OnDateItemClickListener implements DateAdapter.OnDateItemClickListener {
-        @Override
-        public void onDateItemClick(int position) {
-            Log.d(TAG, "onDateItemClick() called with: position = [" + position + "]");
-            Intent intent = new Intent(DateListActivity.this, DateDetailActivity.class);
-            intent.putExtra(DateListConstant.POSITION_KEY, position);
-            startActivity(intent);
-        }
     }
 
     private static class UiHandler extends Handler {
@@ -143,15 +123,43 @@ public class DateListActivity extends AppCompatActivity {
                             toastMsg = dateListActivity.getString(R.string.get_date_for_cache);
                             break;
                         case DateListConstant.TYPE_DATA_FOR_NETWORK:
-                            toastMsg = dateListActivity.getString(R.string.get_date_for_network);;
+                            toastMsg = dateListActivity.getString(R.string.get_date_for_network);
+                            ;
                             break;
                         default:
-                            toastMsg = dateListActivity.getString(R.string.get_date_default);;
+                            toastMsg = dateListActivity.getString(R.string.get_date_default);
+                            ;
                     }
                     Toast.makeText(dateListActivity, toastMsg, Toast.LENGTH_SHORT).show();
                     dateListActivity.mDateAdapter.notifyDataSetChanged();
                     break;
             }
+        }
+    }
+
+    public class DateServiceConnection implements ServiceConnection {
+
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            Log.d(TAG, "onServiceConnected() called with: componentName = [" + componentName + "], iBinder = [" + iBinder + "]");
+            mServiceInnerBinder = (DateListService.InnerBinder) iBinder;
+            mServiceInnerBinder.setUiHandler(mUiHandler);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            Log.d(TAG, "onServiceDisconnected() called with: componentName = [" + componentName + "]");
+            mServiceInnerBinder.setUiHandler(null);
+        }
+    }
+
+    private class OnDateItemClickListener implements DateAdapter.OnDateItemClickListener {
+        @Override
+        public void onDateItemClick(int position) {
+            Log.d(TAG, "onDateItemClick() called with: position = [" + position + "]");
+            Intent intent = new Intent(DateListActivity.this, DateDetailActivity.class);
+            intent.putExtra(DateListConstant.POSITION_KEY, position);
+            startActivity(intent);
         }
     }
 

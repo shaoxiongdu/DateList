@@ -1,32 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ author:dushaoxiong@lixiang.com
+  -->
+
+<!--
+  ~ author:dushaoxiong@lixiang.com
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:layout_weight="3"
             android:layout_width="0dp"
-            android:gravity="center"
             android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
             android:text="@string/date_name"
             android:textSize="30sp" />
 
         <TextView
-            android:layout_weight="1"
-            android:text="@string/date_hour"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/date_hour"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="@string/date_min"
             android:textSize="20sp" />
@@ -35,6 +43,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/date_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
