@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">时间列表</string>
+    <string name="home_title">时间列表</string>
+    <string name="detail_title">时间详情</string>
+    <string name="item_empty_message">暂无数据</string>
+    <string name="date_name">时间名称</string>
+    <string name="date_hour">时</string>
+    <string name="date_min">分</string>
+
+    <string name="get_date_for_cache">收到缓存数据</string>
+    <string name="get_date_for_network">收到服务器数据</string>
+    <string name="get_date_default">收到最新数据</string>
+</resources>
