@@ -21,8 +21,8 @@ import androidx.annotation.Nullable;
 import com.lixiang.programmingpracticedatelist.constants.DateListConstant;
 import com.lixiang.programmingpracticedatelist.model.DateModel;
 import com.lixiang.programmingpracticedatelist.provider.DateProvider;
-import com.lixiang.programmingpracticedatelist.utils.DateListFileCacheUtil;
-import com.lixiang.programmingpracticedatelist.utils.DateListNetworkUtil;
+import com.lixiang.programmingpracticedatelist.responsity.DateListFileResponsitory;
+import com.lixiang.programmingpracticedatelist.responsity.DateListNetworkRepository;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class DateListService extends Service {
 
     private static final String TAG = DateListService.class.getName();
     private Handler mUiHandler;
-    private DateListFileCacheUtil mDateListFileCacheUtil;
+    private DateListFileResponsitory mDateListFileCacheUtil;
 
     @Nullable
     @Override
@@ -50,7 +50,7 @@ public class DateListService extends Service {
         Log.d(TAG, "onCreate() called");
         super.onCreate();
 
-        mDateListFileCacheUtil = DateListFileCacheUtil.getInstance(this);
+        mDateListFileCacheUtil = DateListFileResponsitory.getInstance(this);
         handlerData();
     }
 
@@ -79,7 +79,7 @@ public class DateListService extends Service {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            List<DateModel> dateModels = DateListNetworkUtil.getInstance().getAll();
+            List<DateModel> dateModels = DateListNetworkRepository.getInstance().getAll();
             if (dateModels.isEmpty()) {
                 return;
             }
@@ -87,7 +87,7 @@ public class DateListService extends Service {
             sendDateChange(DateListConstant.TYPE_DATA_FOR_NETWORK);
             Log.i(TAG, "handlerData: loaded for server data: size = ");
             // 将数据缓存
-            DateListFileCacheUtil.getInstance(this).write(DateProvider.getInstance().getAll());
+            DateListFileResponsitory.getInstance(this).write(DateProvider.getInstance().getAll());
         }, "readServerThread").start();
     }
 

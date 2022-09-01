@@ -1,12 +1,4 @@
-/*
- * author:dushaoxiong@lixiang.com
- */
-
-/*
- * author:dushaoxiong@lixiang.com
- */
-
-package com.lixiang.programmingpracticedatelist.utils;
+package com.lixiang.programmingpracticedatelist.responsity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,29 +12,19 @@ import com.lixiang.programmingpracticedatelist.model.DateModel;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
-public class DateListFileCacheUtil {
-
-    private static final ReentrantLock reentrantLock = new ReentrantLock();
-    private static DateListFileCacheUtil mInstance;
+public class DateListFileResponsitory {
+    private static DateListFileResponsitory mInstance;
     SharedPreferences mSharedPreferences;
 
-    private DateListFileCacheUtil(Context context) {
+
+    private DateListFileResponsitory(Context context) {
         mSharedPreferences = context.getSharedPreferences(DateListConstant.CACHE_FILE_NAME, Context.MODE_PRIVATE);
     }
 
-    /**
-     * @return {@link DateListFileCacheUtil}
-     */
-    public static DateListFileCacheUtil getInstance(Context context) {
+    public static DateListFileResponsitory getInstance(Context context) {
         if (null == mInstance) {
-            reentrantLock.lock();
-            try {
-                mInstance = new DateListFileCacheUtil(context);
-            } finally {
-                reentrantLock.unlock();
-            }
+            mInstance = new DateListFileResponsitory(context);
         }
         return mInstance;
     }

@@ -30,8 +30,7 @@ public class OkHttpUtil {
     private static final int CONNECT_TIMEOUT = 60;
     private static final int WRITE_TIMEOUT = 60;
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private static final ReentrantLock reentrantLock = new ReentrantLock();
-    private static OkHttpUtil mInstance;
+
     private final OkHttpClient okHttpClient;
 
     private OkHttpUtil() {
@@ -45,19 +44,12 @@ public class OkHttpUtil {
         okHttpClient = clientBuilder.build();
     }
 
-    /**
-     * @return {@link OkHttpUtil}
-     */
+    private static final class Holder {
+        private static final OkHttpUtil INSTANCE = new OkHttpUtil();
+    }
+
     public static OkHttpUtil getInstance() {
-        if (null == mInstance) {
-            reentrantLock.lock();
-            try {
-                mInstance = new OkHttpUtil();
-            } finally {
-                reentrantLock.unlock();
-            }
-        }
-        return mInstance;
+        return Holder.INSTANCE;
     }
 
     /**

@@ -6,7 +6,7 @@
  * author:dushaoxiong@lixiang.com
  */
 
-package com.lixiang.programmingpracticedatelist.model;
+package com.lixiang.programmingpracticedatelist.adapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -18,10 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lixiang.programmingpracticedatelist.R;
+import com.lixiang.programmingpracticedatelist.listener.OnDateItemClickListener;
+import com.lixiang.programmingpracticedatelist.model.DateModel;
 
 import java.util.List;
 
-public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
+public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> implements OnDateItemClickListener {
 
     private static final String TAG = DateAdapter.class.getName();
     private List<DateModel> mDateList;
@@ -74,9 +76,11 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
         mOnDateItemClickListener = null;
     }
 
-    public interface OnDateItemClickListener {
-        void onDateItemClick(int position);
+    @Override
+    public void onDateItemClick(int position) {
+
     }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView dateName;

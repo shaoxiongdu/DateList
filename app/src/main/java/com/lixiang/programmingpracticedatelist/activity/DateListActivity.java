@@ -27,8 +27,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lixiang.programmingpracticedatelist.R;
+import com.lixiang.programmingpracticedatelist.adapter.DateAdapter;
 import com.lixiang.programmingpracticedatelist.constants.DateListConstant;
-import com.lixiang.programmingpracticedatelist.model.DateAdapter;
+import com.lixiang.programmingpracticedatelist.listener.OnDateItemClickListener;
 import com.lixiang.programmingpracticedatelist.model.DateModel;
 import com.lixiang.programmingpracticedatelist.provider.DateProvider;
 import com.lixiang.programmingpracticedatelist.service.DateListService;
@@ -45,7 +46,7 @@ public class DateListActivity extends AppCompatActivity {
 
     private ServiceConnection dateServiceConnection;
 
-    private OnDateItemClickListener mOnDateItemClickListener;
+    private OnDateItemClickListeners mOnDateItemClickListeners;
     private DateListService.InnerBinder mServiceInnerBinder;
 
     @Override
@@ -77,8 +78,8 @@ public class DateListActivity extends AppCompatActivity {
         List<DateModel> dateModels = DateProvider.getInstance().getAll();
         mDateAdapter = new DateAdapter(dateModels);
 
-        mOnDateItemClickListener = new OnDateItemClickListener();
-        mDateAdapter.setOnDateItemClickListener(mOnDateItemClickListener);
+        mOnDateItemClickListeners = new OnDateItemClickListeners();
+        mDateAdapter.setOnDateItemClickListener(mOnDateItemClickListeners);
         mRecyclerView.setAdapter(mDateAdapter);
 
         // anim
@@ -153,7 +154,7 @@ public class DateListActivity extends AppCompatActivity {
         }
     }
 
-    private class OnDateItemClickListener implements DateAdapter.OnDateItemClickListener {
+    private class OnDateItemClickListeners implements OnDateItemClickListener {
         @Override
         public void onDateItemClick(int position) {
             Log.d(TAG, "onDateItemClick() called with: position = [" + position + "]");

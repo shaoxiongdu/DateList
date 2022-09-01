@@ -10,7 +10,7 @@
  * author:dushaoxiong@lixiang.com
  */
 
-package com.lixiang.programmingpracticedatelist.utils;
+package com.lixiang.programmingpracticedatelist.responsity;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,39 +18,34 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.lixiang.programmingpracticedatelist.constants.DateListConstant;
 import com.lixiang.programmingpracticedatelist.model.DateModel;
+import com.lixiang.programmingpracticedatelist.utils.OkHttpUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.locks.ReentrantLock;
 
 import okhttp3.Response;
 
-public class DateListNetworkUtil {
-    private static final String TAG = DateListNetworkUtil.class.getName();
-    private static final ReentrantLock reentrantLock = new ReentrantLock();
-    private static DateListNetworkUtil mInstance;
+public class DateListNetworkRepository {
+    private static final String TAG = DateListNetworkRepository.class.getName();
+
     private static String ip;
     private static int port;
     private static String url;
 
-    public DateListNetworkUtil() {
+    public DateListNetworkRepository() {
         ip = DateListConstant.SERVER_IP;
         port = DateListConstant.SERVER_PORT;
         url = DateListConstant.SERVER_URL_RANDOM_DATE;
     }
 
-    public static DateListNetworkUtil getInstance() {
-        if (null == mInstance) {
-            reentrantLock.lock();
-            try {
-                mInstance = new DateListNetworkUtil();
-            } finally {
-                reentrantLock.unlock();
-            }
-        }
-        return mInstance;
+    private static final class Holder {
+        private static final DateListNetworkRepository INSTANCE = new DateListNetworkRepository();
+    }
+
+    public static DateListNetworkRepository getInstance() {
+        return Holder.INSTANCE;
     }
 
     public List<DateModel> getAll() {
