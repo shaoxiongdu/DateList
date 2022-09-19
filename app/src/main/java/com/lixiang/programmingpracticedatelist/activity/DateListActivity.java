@@ -40,12 +40,12 @@ public class DateListActivity extends AppCompatActivity {
 
     private static final String TAG = DateListActivity.class.getName();
     private RecyclerView mRecyclerView;
-    private DateAdapter mDateAdapter;
+    private static DateAdapter mDateAdapter;
     private UiHandler mUiHandler;
 
     private ServiceConnection dateServiceConnection;
 
-    private OnDateItemClickListener mOnDateItemClickListener;
+    private static OnDateItemClickListener mOnDateItemClickListener;
     private DateListService.InnerBinder mServiceInnerBinder;
 
     @Override
@@ -78,7 +78,6 @@ public class DateListActivity extends AppCompatActivity {
         mDateAdapter = new DateAdapter(dateModels);
 
         mOnDateItemClickListener = new OnDateItemClickListener();
-        mDateAdapter.setOnDateItemClickListener(mOnDateItemClickListener);
         mRecyclerView.setAdapter(mDateAdapter);
 
         // anim
@@ -117,6 +116,7 @@ public class DateListActivity extends AppCompatActivity {
             switch (msg.what) {
                 case DateListConstant.MSG_WHAT_DATE_CHANGE:
                     Log.d(TAG, "activity receive date change : " + DateProvider.getInstance().getAll());
+                    mDateAdapter.setOnDateItemClickListener(mOnDateItemClickListener);
                     String toastMsg = null;
                     switch (msg.arg1) {
                         case DateListConstant.TYPE_DATA_FOR_CACHE:
